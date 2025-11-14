@@ -22,7 +22,12 @@ function Wallet() {
         setBalance(parseFloat(balanceEth).toFixed(4));
       }
     } catch (err) {
-      setError('Failed to load balance');
+      const errorMsg = err.message || 'Failed to load balance';
+      if (errorMsg.includes('RPC endpoint') || errorMsg.includes('too many errors')) {
+        setError('RPC endpoint error: MetaMask\'s RPC is experiencing issues. Try switching networks in MetaMask or wait a few minutes.');
+      } else {
+        setError(`Failed to load balance: ${errorMsg}`);
+      }
     }
   }, [account, web3]);
 
@@ -47,7 +52,12 @@ function Wallet() {
         setError('Please install MetaMask or another Web3 wallet');
       }
     } catch (err) {
-      setError(err.message || 'Failed to connect wallet');
+      const errorMsg = err.message || 'Failed to connect wallet';
+      if (errorMsg.includes('RPC endpoint') || errorMsg.includes('too many errors')) {
+        setError('RPC endpoint error: MetaMask\'s RPC is experiencing issues. Please try: 1) Switch networks in MetaMask, 2) Wait a few minutes, or 3) Check your internet connection.');
+      } else {
+        setError(errorMsg);
+      }
     }
   };
 
@@ -90,7 +100,14 @@ function Wallet() {
       loadBalance();
       setTimeout(() => setSuccess(''), 5000);
     } catch (err) {
-      setError(err.message || 'Transaction failed');
+      const errorMsg = err.message || 'Transaction failed';
+      if (errorMsg.includes('RPC endpoint') || errorMsg.includes('too many errors')) {
+        setError('RPC endpoint error: MetaMask\'s RPC is experiencing issues. The transaction will retry automatically, or you can switch networks in MetaMask settings.');
+      } else if (errorMsg.includes('user rejected') || errorMsg.includes('User denied')) {
+        setError('Transaction cancelled by user');
+      } else {
+        setError(`Transaction failed: ${errorMsg}`);
+      }
     } finally {
       setIsLoading(false);
     }
