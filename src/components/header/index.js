@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
+import { Link } from "react-router-dom";
 
 import "./index.css";
 
@@ -8,9 +9,9 @@ function Header() {
     return (
         <div className="container">
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                <a className="navbar-brand" href="/">
-                    <img src={AppLogo} />
-                </a>
+                <Link className="navbar-brand" to="/">
+                    <img src={AppLogo} alt="Logo" />
+                </Link>
                 <button 
                     className="navbar-toggler" 
                     type="button" 
@@ -25,25 +26,28 @@ function Header() {
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav ml-auto">
                         <li className="nav-item">
-                            <a className="nav-link" href="/">Home</a>
+                            <Link className="nav-link" to="/">Home</Link>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="services">Services</a>
+                            <Link className="nav-link" to="/wallet">Wallet</Link>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="about">About</a>
+                            <Link className="nav-link" to="/services">Services</Link>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="features">Features</a>
+                            <Link className="nav-link" to="/about">About</Link>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="team">Team</a>
+                            <Link className="nav-link" to="/features">Features</Link>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="blog">Blog</a>
+                            <Link className="nav-link" to="/team">Team</Link>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="contact">Contact</a>
+                            <Link className="nav-link" to="/blog">Blog</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/contact">Contact</Link>
                         </li>
                     </ul>
                     <form className="form-inline my-2 my-lg-0">
