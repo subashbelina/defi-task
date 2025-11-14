@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Web3 from 'web3';
 import './index.css';
 
 function Wallet() {
+  const navigate = useNavigate();
   const [account, setAccount] = useState(null);
   const [balance, setBalance] = useState('0');
   const [web3, setWeb3] = useState(null);
@@ -108,6 +110,10 @@ function Wallet() {
   return (
     <div className="wallet-container">
       <div className="wallet-wrapper">
+        <button className="back-button" onClick={() => navigate('/')} title="Go back">
+          <span className="back-arrow">←</span>
+          <span className="back-text">Back</span>
+        </button>
         <div className="wallet-header">
           <h1 className="wallet-title">ETH Wallet</h1>
           <p className="wallet-subtitle">Manage your Ethereum transactions</p>

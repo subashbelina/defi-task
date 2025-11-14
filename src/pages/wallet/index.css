@@ -10,11 +10,59 @@
 .wallet-wrapper {
   max-width: 800px;
   width: 100%;
+  position: relative;
+}
+
+/* Back Button */
+.back-button {
+  position: absolute;
+  top: -10px;
+  left: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  padding: 12px 20px;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 10;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.back-button:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateX(-5px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.back-button:active {
+  transform: translateX(-3px);
+}
+
+.back-arrow {
+  font-size: 1.2rem;
+  font-weight: bold;
+  transition: transform 0.3s ease;
+}
+
+.back-button:hover .back-arrow {
+  transform: translateX(-3px);
+}
+
+.back-text {
+  font-size: 1rem;
 }
 
 .wallet-header {
   text-align: center;
   margin-bottom: 40px;
+  margin-top: 20px;
   color: white;
 }
 
@@ -362,6 +410,20 @@
 
 /* Responsive */
 @media (max-width: 768px) {
+  .back-button {
+    top: -5px;
+    padding: 10px 16px;
+    font-size: 0.9rem;
+  }
+
+  .back-text {
+    display: none;
+  }
+
+  .back-arrow {
+    font-size: 1.5rem;
+  }
+
   .wallet-title {
     font-size: 2rem;
   }
